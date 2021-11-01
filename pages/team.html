@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>Yantrik Team</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="innerwrapper">
+            <header>
+                <img src="../data/index/logo.jpg" alt="">
+                <ul class="options">
+                    <li>
+                        <a href="../index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="blog.html">Blogs</a>
+                    </li>
+                    <li>
+                        <a href="events.html">Events</a>
+                    </li>
+                    <li>
+                        <a href="gallery.html">Gallery</a>
+                    </li>
+                    <li>
+                        <a href="team.html">Team</a>
+                    </li>   
+                </ul>
+            </header>
+           
+           
+            <main>
+                <div class="content" id="teamcards">
+                    <div class="sidebar">
+                        <ul class="tabs">
+                            <li data-tab-target="#crew" onclick="opentab('crew')">
+                                <div class="a">
+                                    <i class='bx bxs-user-account'></i>
+                                    <!-- <span class="links_name">Crew</span> -->
+                                    <span class="tooltip">Crew</span>
+                                </div>
+                            </li>
+                            <li data-tab-target="#volunteer" onclick="opentab('volunteer')">
+                                <div class="a">
+                                    <i class='bx bx-user-circle'></i>
+                                    <!-- <span class="links_name">Volunteers</span> -->
+                                    <span class="tooltip">Volunteers</span>
+                                </div>
+                            </li>
+                            <li data-tab-target="#senioradv" onclick="opentab('senioradv')">
+                                <div class="a">
+                                    <i class='bx bx-user-voice'></i>
+                                    <!-- <span class="links_name">Senior Advisors</span> -->
+                                    <span class="tooltip">Senior Advisors</span>
+                                </div>
+                            </li>
+                            <li data-tab-target="#facultyadv" onclick="opentab('facultyadv')">
+                                <div class="a">
+                                    <i class='bx bxs-user-voice'></i>
+                                    <!-- <span class="links_name">Faculty Advisors</span> -->
+                                    <span class="tooltip">Faculty Advisors</span>
+                                </div>
+                            </li>
+                            <li data-tab-target="#coremem" onclick="opentab('coremem')">
+                                <div class="a">
+                                    <i class='bx bxs-user-badge'></i>
+                                    <!-- <span class="links_name">Core Members</span> -->
+                                    <span class="tooltip">Core Members</span>
+                                </div>
+                            </li>
+                            <li data-tab-target="#maintainer" onclick="opentab('maintainer')">
+                                <div class="a">
+                                    <i class='bx bx-user-check'></i>
+                                    <!-- <span class="links_name">Maintainers</span> -->
+                                    <span class="tooltip">Maintainers</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="container">
+                        <div class="mem" id="crew">
+                            
+                        </div>
+                        <div class="mem" id="volunteer">
+
+                        </div>
+                        <div class="mem" id="senioradv">
+
+                        </div>
+                        <div class="mem" id="facultyadv">
+
+                        </div>
+                        <div class="mem" id="coremem">
+
+                        </div>
+                        <div class="mem" id="maintainer">
+
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer>
+                <h2>Hey this is footer</h2>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+
+        function opentab(tabname){
+            var i;
+            var x=document.getElementsByClassName("mem");
+            for (i=0; i<x.length; i++) {
+                x[i].style.display = "none";
+            }
+            document.getElementById(tabname).style.display = "flex";
+        }
+        // Initial
+        opentab("volunteer");
+
+        function createCard([id,img,name,designition,fb,insta,linkedin,whatsapp]){
+            const mem = document.getElementById(id);
+            let code = `
+            <div class="card">
+                <div class="cardcontent">
+                    <div class="imgBx">
+                        <img src="${img}" alt="pic">
+                    </div>
+                    <div class="contentBx">
+                        <h3>
+                            ${name}<br><span>${designition}</span>
+                        </h3>
+                    </div>
+                </div>
+                <ul class="sci">
+                    <li style="--i:1">
+                        <a target="_blank" rel="noopener noreferrer" href="${fb}" >
+                            <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li style="--i:2">
+                        <a target="_blank" rel="noopener noreferrer" href="${insta}">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li style="--i:3">
+                        <a target="_blank" rel="noopener noreferrer" href="${linkedin}">
+                            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li style="--i:4">
+                        <a target="_blank" rel="noopener noreferrer" href="${whatsapp}">
+                            <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>`;
+
+            mem.innerHTML += code;
+        }
+
+        // let item1 = ["crew","../data/index/1.jpg","Dharma","Crew","https://www.google.com","https://insta","https://linkedin","https://whatsapp"];
+        // let item2 = ["volunteers","../data/index/1.jpg","Dharma","Volunteer","https://www.google.com","https://insta","https://linkedin","https://whatsapp"];
+        // let item3 = ["senioradv","../data/index/1.jpg","Dharma","Senior adv","https://www.google.com","https://insta","https://linkedin","https://whatsapp"];
+        // let item4 = ["facultyadv","../data/index/1.jpg","Dharma","faculty adv","https://www.google.com","https://insta","https://linkedin","https://whatsapp"];
+        // let l = [item1,item2,item3,item4,item4,item4,item4,item4,item4,item4,item4,item4,item4,item4,item4];
+        
+        
+        // createCard(item1);
+        // createCard(item2);
+        // createCard(item3);
+        // createCard(item4);
+
+        // for (let i of l){
+        //     createCard(i);
+        // }
+
+
+        onload = fetch("../data/team/team.csv").then(res =>{
+            return res.text()
+        }).then(data => {
+            let result = data.split(/\r?\n|\r/).map(
+                e => {
+                    return e.split(",");
+                }
+            )
+            // console.log(result);
+            result.forEach(e =>{
+                createCard(e);
+            })
+        })
+        
+        
+
+        
+
+    </script>
+</body>
+</html>
+
