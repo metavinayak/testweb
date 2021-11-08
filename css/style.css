@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fff;
+
+}
+
+
+
+
+header {
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100vw;
+    height: auto;
+    z-index: 3;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 0.1em solid #fff;
+    
+}
+header img{
+    padding: 0.2em 0 0 0.2em;
+    height: 8vh;
+    
+}
+
+header ul {
+    list-style-type: none;
+    float: right;
+    height: 8vh;
+    padding: 0 3em 0 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-self: right;
+
+}
+
+header ul li {
+    text-align: center;
+    display: inline-block;
+}
+
+
+
+header ul li a {
+    line-height: 1vh;
+    color: #fff;
+    padding: 1.5vh 2vw;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+
+header li a:hover {
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 1.5em;
+}
+
+
+
+
+
+/* calc(100vh - header+footer height) */
+main .content{
+    min-height: calc(100vh - (50px));
+
+}
+main .content .cont1{
+    min-height: 100vh;
+}
+
+
+
+
+
+footer {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+}
