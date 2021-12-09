@@ -128,3 +128,27 @@ main .content .popup span{
     height: 12em;
     width: 20em;
 }
+
+/******************************************************************************/
+.tit{
+    margin: 4rem 1.25rem 1.25rem 1.25rem;
+}
+h2{
+    text-align: center;
+}
+.card{
+    border-radius: 15px;
+    margin-bottom: 20px;
+
+}
+.item{
+    margin: 20px;
+    border-radius: 15px;
+}
+iframe{
+    margin: 20px;
+    border-radius: 15px;
+}
+.title{
+    padding: 1.1rem 1.1rem 1.1rem 1.1rem;
+}
