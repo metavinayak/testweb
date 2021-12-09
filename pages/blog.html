@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
     <title>Yantrik Blogs</title>
     <link rel="stylesheet" href="../css/blog.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -32,30 +31,101 @@
                     </li>   
                 </ul>
             </header>
-
-
             <main>
                 <div class="content">
                     <div class="bloghead">
-                         <ul>
-                             <li><a target="_blank" rel="noopener noreferrer" href="editor.html">Write a Blog</a></li>
-                         </ul>
+                        <ul>
+                            <li><a target="_blank" rel="noopener noreferrer" href="editor.html">Write a Blog</a></li>
+                             <!-- <li>
+                                 <div id="search-box">
+                                    <input type="text" placeholder=" " />
+                                 <span></span>
+                                 </div>-->
+                                 
+                            </li>
+                        </ul>
                     </div>
                     <div id="blogpage">
-                        <div class="blogslist">
+                        <div id="blogslist">
                             
                         </div>
                     </div>
                 </div>
             </main>
-
-
-
-
             <footer>
                 <h2>Hey this is footer</h2>
             </footer>
         </div>
     </div>
+    
+    <script type="module">    
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyCo5jZ9wyNSP401q5X8-BH-gM7uxUnhuro",
+            authDomain: "web2k21-99ffd.firebaseapp.com",
+            projectId: "web2k21-99ffd",
+            storageBucket: "web2k21-99ffd.appspot.com",
+            messagingSenderId: "616040662732",
+            appId: "1:616040662732:web:ac36b18f3ccff8c246a469"
+        };
+        const app = initializeApp(firebaseConfig);
+
+        import {getStorage, ref as sRef, uploadBytesResumable, getDownloadURL} from "https://www.gstatic.com/firebasejs/9.6.0/firebase-storage.js";
+        import {getDatabase, ref, onValue, set, child, get, update, remove} from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
+        
+        
+        // Firebase database
+        const realdb = getDatabase();
+        
+        function storeid(val){
+            sessionStorage.setItem("id",val);
+        }
+
+        function createBlcard(uid,bgimg,title,descrip,author){
+            const container = document.getElementById("blogslist");
+            let code = 
+            `<a target="_blank" rel="noopener noreferrer" id="blogcard" href=("iblog.html/"+${uid})  >
+                <div class = "blogidd">${uid}</div>
+                <div class="card"  >
+                    <div class="cardcontent">
+                        <div class="imgBx">
+                            <img src="${bgimg}" alt="pic">
+                        </div>
+                        <div class="contentBx">
+                            <h3>${title}</h3>
+                            <p>${descrip}</p>
+                            <h1> <span> By- </span> ${author}</h1>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            `;
+            container.innerHTML += code;
+            
+        }
+        
+        function Addallblogs(b){
+            b.forEach(bl =>{
+                createBlcard(bl.UID,bl.BgImgURL,bl.Title,bl.Description,bl.AuthName)
+            });
+        }
+        function getdata(){
+            const dbref = ref(realdb,"Blogs");
+            onValue(dbref, (snapshot) => {
+                var blogs = [];
+                snapshot.forEach(childSanpshot => {
+                    blogs.push(childSanpshot.val());
+                });
+                Addallblogs(blogs);
+            });
+        }
+
+        window.onload = getdata;
+        
+        const cards = document.querySelectorAll("#blogcard");
+        cards.forEach((blog)=>{
+            blog.addEventListener("click",storeid(blog.blogidd.innerHTML));
+        });
+      </script>
 </body>
 </html>

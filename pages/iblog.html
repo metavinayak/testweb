@@ -9,6 +9,104 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    
+    <div class="wrapper">
+        <div class="innerwrapper">
+            <header>
+                <img src="../data/index/logo.jpg" alt="">
+                <ul class="options">
+                    <li>
+                        <a href="../index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="blog.html">Blogs</a>
+                    </li>
+                    <li>
+                        <a href="events.html">Events</a>
+                    </li>
+                    <li>
+                        <a href="gallery.html">Gallery</a>
+                    </li>
+                    <li>
+                        <a href="team.html">Team</a>
+                    </li>   
+                </ul>
+            </header>
+            <main>
+                <div class="content">
+                    <div class="head">
+                        <div id="bgimgbox">
+                            <img id="bgimg" alt="Background Image">
+                        </div>
+                        <h1 id="title"></h1>
+                        <p id="description"></p>
+                    </div>
+
+                    <div class = "data" id = "data">
+                    </div>
+                    <div class="author">
+                        <div id="authimgbox">
+                            <img src="" alt="" id="authorimg">
+                        </div>
+                        <h1 id="authorname"></h1>
+                        <p id="authordesc"></p>
+                        <div id="timestamp"></div>
+                    </div>
+                </div>
+            </main>
+            <footer>
+                <h2>Hey this is footer</h2>
+            </footer>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
+        const firebaseConfig = {
+          apiKey: "AIzaSyCo5jZ9wyNSP401q5X8-BH-gM7uxUnhuro",
+          authDomain: "web2k21-99ffd.firebaseapp.com",
+          projectId: "web2k21-99ffd",
+          storageBucket: "web2k21-99ffd.appspot.com",
+          messagingSenderId: "616040662732",
+          appId: "1:616040662732:web:ac36b18f3ccff8c246a469"
+        };
+        const app = initializeApp(firebaseConfig);
+
+        import {getStorage, ref as sRef, uploadBytesResumable, getDownloadURL} from "https://www.gstatic.com/firebasejs/9.6.0/firebase-storage.js";
+        import {getDatabase, ref, onValue, set, child, get, update, remove} from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
+        const realdb = getDatabase();
+
+        function getid(){
+            return sessionStorage.getItem("id");
+        }
+
+        const blogid = getid;
+        console.log(blogid);
+
+        var bgimg = document.getElementById("bgimg");
+        var title = document.getElementById("title");
+        var desc = document.getElementById("description");
+        var mdata = document.getElementById("data");
+        var authimg = document.getElementById("authorimg");
+        var authnm = document.getElementById("authorname");
+        var authdesc = document.getElementById("authordesc");
+        var tstamp = document.getElementById("timestamp");
+        
+        var dbref = ref(realdb);
+        function loaddata(){
+            console.log(blogid);
+            get(child(dbref,"Blogs/"+blogid)).then((snapshot) =>{
+                console.log(snapshot);
+            if (snapshot.exists()){
+                console.log("hi");
+                bgimg.src = snapshot.val().BgImgURL;
+
+            }
+        })
+        }
+
+        window.onload = loaddata;
+        
+
+    </script>
 </body>
 </html>

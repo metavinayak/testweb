@@ -42,7 +42,7 @@
                     </li>
                     <li style="--i:4">
                         <a target="_blank" rel="noopener noreferrer" href="${whatsapp}">
-                            <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                            <i class="fa fa-phone-square" aria-hidden="true"></i>
                         </a>
                     </li>
                 </ul>

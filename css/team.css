@@ -18,8 +18,7 @@
     overflow: hidden;
     position: relative;
     flex-direction: row;
-    background-color: rgb(161, 120, 120);
-
+    background-color: rgb(218, 30, 30);
 }
 
 #teamcards .container .mem {
